@@ -6,7 +6,7 @@ let config={
     width: window.outerWidth,
     height: window.outerHeight, 
     backgroundColor: 0x0c88c7,
-    scene: [BootScene, GameScene],
+    scene: [BootScene, GameScene, preloadGame, playGame],
     physics: {
         default: "arcade"
     },

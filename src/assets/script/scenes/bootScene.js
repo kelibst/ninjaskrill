@@ -6,11 +6,11 @@ class BootScene extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image("background", "../src/assets/img/standing.png")
+        this.load.image("cover", "../src/assets/img/ninjaS.png")
     }
 
     create(){
-        this.background = this.add.tileSprite(config.width/2, config.height/2, config.width, config.height,'background')
+        this.background = this.add.tileSprite(config.width/2, config.height/2, config.width, config.height,'cover')
         this.starterText = this.add.text(20,20, "Loading Game......", {font: "25px Arial", fill: "yellow"});
         
         setTimeout(()=>{
