@@ -258,6 +258,8 @@ class playGame extends Phaser.Scene{
             let cont = confirm("Game Over! Continue?")
             if (cont){
                 this.scene.start("PlayGame");
+            }else{
+                this.scene.start("bootGame");
             }
             
         }

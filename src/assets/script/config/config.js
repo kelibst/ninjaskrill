@@ -3,8 +3,8 @@ import GameScene from '../scenes/gameScene';
 import preloadGame from '../scenes/preloadGame';
 import playGame from '../scenes/playGame';
 let config={
-    width: window.outerWidth,
-    height: window.outerHeight, 
+    width: 800,
+    height: 600, 
     backgroundColor: 0x0c88c7,
     scene: [BootScene, GameScene, preloadGame, playGame],
     physics: {

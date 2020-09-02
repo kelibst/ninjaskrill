@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import {config} from '../config/config'
 class BootScene extends Phaser.Scene{
+    
     constructor(){
         super("bootGame"); 
     }
@@ -10,8 +11,12 @@ class BootScene extends Phaser.Scene{
     }
 
     create(){
-        this.background = this.add.tileSprite(config.width/2, config.height/2, config.width, config.height,'cover')
-        this.starterText = this.add.text(20,20, "Loading Game......", {font: "25px Arial", fill: "yellow"});
+        const  style = { font: "bold 4rem Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+        this.background = this.add.tileSprite(config.width, config.height, config.width, config.height,'cover')
+        this.title = this.add.text(config.width/4,config.width/4,"NINJA SKRILL", style);
+        
+        
+        this.title.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
         
         setTimeout(()=>{
             this.scene.start("playGame");
