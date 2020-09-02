@@ -11,7 +11,7 @@ class playGame extends Phaser.Scene{
         this.score = 0;
         // this.add.image(3400,2400, 'background')
         this.background = this.add.tileSprite(config.width/2, config.height/2, config.width, config.height,'background');
-      
+        this.scoreBoard = this.add.text(20,20, `Score: ${this.score}`, {font:"25px Arial", fill: "yellow"})
         
         // group with all active mountains.
         this.mountainGroup = this.add.group();
@@ -101,13 +101,10 @@ class playGame extends Phaser.Scene{
         }, null, this);
 
         // setting collisions between the player and the coin group
-        let counter = 0;
+       
         this.physics.add.overlap(this.player, this.coinGroup, function(player, coin){
-            
-            if(counter < 1){
-                this.score+=5;
-                counter+=1;
-            }
+                this.score+=1;
+          
             this.tweens.add({
                 targets: coin,
                 y: coin.y - 100,
@@ -252,7 +249,8 @@ class playGame extends Phaser.Scene{
     }
 
     update(){
-        console.log(this.score)
+       
+
         // game over
         if(this.player.y > config.height){
             console.log("Game Over")
@@ -265,6 +263,7 @@ class playGame extends Phaser.Scene{
 
         this.player.x = gameOptions.playerStartPosition;
         this.background.tilePositionX -=0.5
+        this.add.text(20,20, `Score: ${this.score}`, {font:"25px Arial", fill: "yellow"})
         // recycling platforms
         let minDistance = config.width;
         let rightmostPlatformHeight = 0;

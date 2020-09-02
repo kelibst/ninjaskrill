@@ -8,10 +8,7 @@ class preloadGame extends Phaser.Scene{
     preload(){
         this.load.image("platform", "../src/assets/img/platform.png");
         this.load.image("background", "../src/assets/img/background2.png")
-        // this.load.spritesheet("background", "background.png", {
-        //     frameHeight: 1200,
-        //     frameWidth: 1700
-        // })
+      
 
         // player is a sprite sheet made by 24x48 pixels
         this.load.spritesheet("player", "../src/assets/img/ninja.png", {
