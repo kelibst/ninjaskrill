@@ -2,11 +2,13 @@ import BootScene from '../scenes/bootScene';
 import GameScene from '../scenes/gameScene';
 import preloadGame from '../scenes/preloadGame';
 import playGame from '../scenes/playGame';
+import scoreScene from '../scenes/scoreScene'
+import PlayerInputScene from '../scenes/scoreSetScene'
 let config={
     width: 800,
     height: 600, 
     backgroundColor: 0x0c88c7,
-    scene: [BootScene, GameScene, preloadGame, playGame],
+    scene: [BootScene, GameScene, preloadGame, playGame, scoreScene, PlayerInputScene],
     physics: {
         default: "arcade"
     },
