@@ -3,11 +3,11 @@ const nameForm = document.querySelector('.nameForm');
 
 const setUserName = () => ({
   user: '',
-  User(name){
-    return{
-        name: name,
-        score: 0
-    }
+  User(name) {
+    return {
+      name,
+      score: 0,
+    };
   },
   grabUserName() {
     nameset.classList.remove('d-none');
