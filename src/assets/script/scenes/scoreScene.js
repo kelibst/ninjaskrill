@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { getScores } from '../config/leaderboard';
-import Button from '../config/buttons'
+import Button from '../config/buttons';
 
 export default class LeaderboardScene extends Phaser.Scene {
   constructor() {
@@ -19,7 +19,7 @@ export default class LeaderboardScene extends Phaser.Scene {
         this.add.text(100, 90 * (i + 1), 'arcade', ` ${i + 1}     ${scores[i].score}   ${scores[i].user}`).setTint(0xff0000);
       }
     }).catch(() => {
-        this.add.text(100, 100, "There was an error while loading the server");
+      this.add.text(100, 100, 'There was an error while loading the server');
     });
   }
 }

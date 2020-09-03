@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 
 const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/rWYgdpb7LJrq83DsEmZ2/scores/';
 
- const putScore = async (user, score) => {
+const putScore = async (user, score) => {
   const body = JSON.stringify({ user, score });
   const data = {
     method: 'POST',
@@ -19,7 +19,7 @@ const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/game
   return result;
 };
 
- const getScores = async () => {
+const getScores = async () => {
   const data = {
     method: 'GET',
     headers: {
@@ -32,4 +32,4 @@ const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/game
   return scores.result;
 };
 
-export {getScores, putScore}
+export { getScores, putScore };
