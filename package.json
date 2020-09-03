@@ -4,7 +4,8 @@
   "description": "A simple running game using phaser 3",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode production",
+    "serve": "webpack --mode development",
     "dev": "webpack-dev-server",
     "test": "jest"
   },
@@ -22,9 +23,7 @@
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.1.0",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-fetch": "^2.6.0",
     "node-sass": "^4.14.1",
-    "regenerator-runtime": "^0.13.5",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
@@ -36,7 +35,9 @@
     "leaderboard": "0.0.9",
     "milsymbol": "^2.0.0",
     "packagejson": "^1.0.1",
-    "phaser": "^3.24.1"
+    "phaser": "^3.24.1",
+    "regenerator-runtime": "^0.13.5",
+    "node-fetch": "^2.6.0"
   },
   "repository": {
     "type": "git",

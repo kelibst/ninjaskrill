@@ -1,5 +1,7 @@
+/* eslint-disable */
+
 import Phaser from 'phaser';
-import config  from '../config/config';
+import config from '../config/config';
 
 class BootScene extends Phaser.Scene {
   constructor() {

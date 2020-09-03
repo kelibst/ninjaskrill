@@ -1,5 +1,7 @@
+/* eslint-disable */
+
 import Phaser from 'phaser';
-import config  from '../config/config';
+import config from '../config/config';
 import Button from '../config/buttons';
 
 import '../main.css';

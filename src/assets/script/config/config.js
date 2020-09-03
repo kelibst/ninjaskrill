@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import BootScene from '../scenes/bootScene';
 import GameScene from '../scenes/gameScene';
 import preloadGame from '../scenes/preloadGame';
@@ -31,4 +33,4 @@ const config = {
 };
 
 
-export default  config;
+export default config;

@@ -23,27 +23,25 @@ const setUserName = () => ({
 
   setGameData() {
     const data = { name: 'ninjaskrill' };
-    const link = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/${data}`;
+    const link = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
     fetch(link, {
       method: 'POST',
       body: JSON.stringify(data),
-    }).then(res => {
-      console.log('Request complete! response:', res);
-      return res;
-    });
+    }).then(res => res);
   },
   getUserData() {
+    let person;
     if (localStorage.length < 1) {
       this.grabUserName();
-      const user = User(this.grabUserName());
-      console.log(user);
+      person = User(this.grabUserName());
 
-      localStorage.setItem('person', JSON.stringify(user));
+      localStorage.setItem('person', JSON.stringify(person));
     } else {
       const perData = localStorage.getItem('person');
-      const person = JSON.parse(perData);
+      person = JSON.parse(perData);
       return person;
     }
+    return person;
   },
 
 });

@@ -8,7 +8,7 @@ class Button extends Phaser.GameObjects.Container {
     this.y = y;
 
     this.button = this.scene.add.sprite(0, 0, key1).setInteractive();
-    
+
 
     this.add(this.button);
 
@@ -16,7 +16,6 @@ class Button extends Phaser.GameObjects.Container {
       this.scene.scene.start(targetScene);
     });
 
-    
 
     this.button.on('pointerout', () => {
       this.button.setTexture(key1);

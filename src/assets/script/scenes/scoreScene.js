@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Phaser from 'phaser';
 import { getScores } from '../config/leaderboard';
 import Button from '../config/buttons';
