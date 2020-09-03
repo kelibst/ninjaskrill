@@ -1,13 +1,10 @@
 import Phaser from 'phaser';
-import { setUserName } from './assets/script/script';
 
 import { config } from './assets/script/config/config';
 
-const Game = new Phaser.Game(config);
+Phaser.Game(config);
 window.focus();
-
-
-document.addEventListener('DOMContentLoaded', (e) => {
+document.addEventListener('DOMContentLoaded', () => {
   config.resize();
   window.addEventListener('resize', config.resize, false);
 });
