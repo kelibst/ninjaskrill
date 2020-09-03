@@ -5,12 +5,12 @@ const setUserName = () => ({
   user: '',
   User(name) {
     return {
-      name: name,
+      name,
       score: [],
     };
   },
   grabUserName() {
-  
+
   },
 
 
@@ -22,20 +22,23 @@ const setUserName = () => ({
       body: JSON.stringify(data),
     }).then(res => res);
   },
+  updateData(user) {
+    localStorage.setItem('person', JSON.stringify(user));
+  },
   getUserData() {
     let person;
     if (localStorage.length < 1) {
-     
       nameset.classList.remove('d-none');
       nameForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        let res = nameForm.username.value;
+        const res = nameForm.username.value;
+
         if (res.length) {
           nameset.classList.add('d-none');
-          person = this.User(res)
-          localStorage.setItem('person', JSON.stringify(person));
+          person = this.User(res);
+          this.updateData(person);
         }
-      });   
+      });
     } else {
       const perData = localStorage.getItem('person');
       person = JSON.parse(perData);

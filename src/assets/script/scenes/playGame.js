@@ -3,6 +3,8 @@
 import Phaser from 'phaser';
 import config from '../config/config';
 import gameOptions from '../config/options';
+import setUserData from '../script'
+import preloadGame from './preloadGame';
 
 // playGame scene
 class playGame extends Phaser.Scene {
@@ -15,7 +17,9 @@ class playGame extends Phaser.Scene {
     // this.add.image(3400,2400, 'background')
     this.background = this.add.tileSprite(config.width / 2, config.height / 2, config.width, config.height, 'background');
     this.scoreBoard = this.add.text(30, 20, `Score: ${this.score}`, { font: '30px Monospace', fill: 'yellow' });
+
     this.scoreBoard.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+    
 
     // group with all active mountains.
     this.mountainGroup = this.add.group();
@@ -247,12 +251,22 @@ class playGame extends Phaser.Scene {
   update() {
     // game over
     if (this.player.y > config.height) {
-      const cont = confirm('Would you like to try again?');
-      if (cont) {
-        this.scene.start('PlayGame');
-      } else {
-        this.scene.start('bootGame');
-      }
+     this.scene.pause("PlayGame")
+      
+     //get the current user
+      let curUser = setUserData().getUserData(); 
+      
+      //add the score to the score array
+        curUser.score.push(this.score)
+        setUserData().updateData(curUser);
+
+        //wait for 3 s and call the end scene 
+        setTimeout(()=>{
+          this.scene.start('endGame');
+        }, 1000)
+      
+      
+      
     }
 
     this.player.x = gameOptions.playerStartPosition;
