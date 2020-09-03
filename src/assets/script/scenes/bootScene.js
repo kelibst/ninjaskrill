@@ -15,9 +15,12 @@ class BootScene extends Phaser.Scene {
     const style = {
       font: 'bold 4rem Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle',
     };
-    this.background = this.add.tileSprite(config.width, config.height, config.width, config.height, 'cover');
+    const suBstyle = {
+      font: 'bold 1rem Arial', fill: 'yellow', boundsAlignH: 'center', boundsAlignV: 'middle',
+    };
+    this.background = this.add.image(config.width/2, config.height/2, 'cover');
     this.title = this.add.text(config.width / 4, config.width / 4, 'NINJA SKRILL', style);
-
+    this.title = this.add.text(config.width / 2, config.height / 2 , 'By KeliB', suBstyle);
 
     this.title.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 

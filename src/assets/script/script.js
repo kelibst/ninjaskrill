@@ -5,20 +5,12 @@ const setUserName = () => ({
   user: '',
   User(name) {
     return {
-      name,
-      score: 0,
+      name: name,
+      score: [],
     };
   },
   grabUserName() {
-    nameset.classList.remove('d-none');
-    nameForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const res = nameForm.username.innerText;
-      if (res.length) {
-        nameset.classList.add('d-none');
-      }
-      return res;
-    });
+  
   },
 
 
@@ -33,14 +25,20 @@ const setUserName = () => ({
   getUserData() {
     let person;
     if (localStorage.length < 1) {
-      this.grabUserName();
-      person = this.User(this.grabUserName());
-
-      localStorage.setItem('person', JSON.stringify(person));
+     
+      nameset.classList.remove('d-none');
+      nameForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let res = nameForm.username.value;
+        if (res.length) {
+          nameset.classList.add('d-none');
+          person = this.User(res)
+          localStorage.setItem('person', JSON.stringify(person));
+        }
+      });   
     } else {
       const perData = localStorage.getItem('person');
       person = JSON.parse(perData);
-      return person;
     }
     return person;
   },
