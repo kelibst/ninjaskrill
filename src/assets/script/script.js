@@ -27,20 +27,25 @@ const setUserName = () => ({
     fetch(link, {
       method: 'POST',
       body: JSON.stringify(data),
-    }).then(res => res);
+    }).then(res => {
+      console.log('Request complete! response:', res);
+      return res;
+    });
   },
   getUserData() {
-    let person;
     if (localStorage.length < 1) {
       this.grabUserName();
       const user = User(this.grabUserName());
+      console.log(user);
 
       localStorage.setItem('person', JSON.stringify(user));
     } else {
       const perData = localStorage.getItem('person');
-      person = JSON.parse(perData);
+      const person = JSON.parse(perData);
+      return person;
     }
-    return person;
   },
 
 });
+
+export { setUserName };
