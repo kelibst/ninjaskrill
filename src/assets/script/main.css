@@ -5,3 +5,12 @@
     z-index: 100;
     background: firebrick;
 }
+body{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+canvas{
+    max-width: 100%;
+}
