@@ -48,4 +48,4 @@ const setUserName = () => ({
 
 });
 
-export { setUserName };
+export default setUserName;
