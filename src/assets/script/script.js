@@ -1,13 +1,14 @@
 const nameset = document.querySelector('.nameset');
 const nameForm = document.querySelector('.nameForm');
 
-const User = (name) => ({
-  name,
-  score: 0,
-});
-
 const setUserName = () => ({
   user: '',
+  User(name){
+    return{
+        name: name,
+        score: 0
+    }
+  },
   grabUserName() {
     nameset.classList.remove('d-none');
     nameForm.addEventListener('submit', (e) => {
@@ -33,7 +34,7 @@ const setUserName = () => ({
     let person;
     if (localStorage.length < 1) {
       this.grabUserName();
-      person = User(this.grabUserName());
+      person = this.User(this.grabUserName());
 
       localStorage.setItem('person', JSON.stringify(person));
     } else {
