@@ -143,14 +143,17 @@ class playGame extends Phaser.Scene {
   addMountains() {
     const rightmostMountain = this.getRightmostMountain();
     if (rightmostMountain < config.width * 2) {
-      const mountain = this.physics.add.sprite(rightmostMountain + Phaser.Math.Between(100, 350), config.height + Phaser.Math.Between(0, 100), 'mountain');
+      //change to tree
+      const mountain = this.physics.add.sprite(rightmostMountain + Phaser.Math.Between(50, 200), 600, 'mountain');
       mountain.setOrigin(0.5, 1);
+      mountain.setScale(0.5)
+      
       mountain.body.setVelocityX(gameOptions.mountainSpeed * -1);
       this.mountainGroup.add(mountain);
       if (Phaser.Math.Between(0, 1)) {
         mountain.setDepth(1);
       }
-      mountain.setFrame(Phaser.Math.Between(0, 3));
+      mountain.setFrame(Phaser.Math.Between(0, 1));
       this.addMountains();
     }
   }
@@ -307,9 +310,10 @@ class playGame extends Phaser.Scene {
     this.mountainGroup.getChildren().forEach(function (mountain) {
       if (mountain.x < -mountain.displayWidth) {
         const rightmostMountain = this.getRightmostMountain();
-        mountain.x = rightmostMountain + Phaser.Math.Between(100, 350);
-        mountain.y = config.height + Phaser.Math.Between(0, 100);
-        mountain.setFrame(Phaser.Math.Between(0, 3));
+        mountain.x = rightmostMountain + Phaser.Math.Between(50, 200);
+        mountain.y = 600;
+        mountain.setFrame(Phaser.Math.Between(0, 1));
+        mountain.setScale(0.5)
         if (Phaser.Math.Between(0, 1)) {
           mountain.setDepth(1);
         }

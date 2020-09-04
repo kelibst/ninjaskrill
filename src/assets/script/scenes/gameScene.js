@@ -16,6 +16,34 @@ class GameScene extends Phaser.Scene {
     this.load.image('score_btn', '../src/assets/img/buttons/score.png');
     this.load.image('menu', '../src/assets/img/buttons/exit.png');
     this.load.html('name_form', '../src/assets/name_form.html');
+
+    this.load.image('platform', '../src/assets/img/platform.png');
+    this.load.image('background', '../src/assets/img/background2.png');
+
+
+    // player is a sprite sheet made by 24x48 pixels
+    this.load.spritesheet('player', '../src/assets/img/ninja.png', {
+      frameWidth: 49,
+      frameHeight: 59,
+    });
+
+    // the coin is a sprite sheet made by 20x20 pixels
+    this.load.spritesheet('coin', '../src/assets/img/coin.png', {
+      frameWidth: 20,
+      frameHeight: 20,
+    });
+
+    // the firecamp is a sprite sheet made by 32x58 pixels
+    this.load.spritesheet('fire', '../src/assets/img/fire.png', {
+      frameWidth: 40,
+      frameHeight: 70,
+    });
+
+    // mountains are a sprite sheet made by 512x512 pixels
+    this.load.spritesheet('mountain', '../src/assets/img/trees.png', {
+      frameWidth: 512,
+      frameHeight: 512,
+    });
   }
 
   create() {

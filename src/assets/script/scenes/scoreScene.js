@@ -16,7 +16,6 @@ export default class LeaderboardScene extends Phaser.Scene {
     getScores().then((scores) => {
       loading.destroy();
       scores.sort((a, b) => b.score - a.score);
-      console.log(scores)
       this.add.text(100, 20, 'RANK  SCORE   NAME').setTint(0xff00ff);
       const consLen = scores.length < 6 ? scores.length : 6;
       for (let i = 0; i <= consLen; i += 1) {
