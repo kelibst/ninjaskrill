@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import config from '../config/config';
+import Button from '../config/buttons';
 
 // preloadGame scene
 class preloadGame extends Phaser.Scene {
@@ -8,40 +10,10 @@ class preloadGame extends Phaser.Scene {
 
   create() {
     // setting player animation
-    this.anims.create({
-      key: 'run',
-      frames: this.anims.generateFrameNumbers('player', {
-        start: 2,
-        end: 5,
-      }),
-      frameRate: 15,
-      repeat: -1,
-    });
-
-    // setting coin animation
-    this.anims.create({
-      key: 'rotate',
-      frames: this.anims.generateFrameNumbers('coin', {
-        start: 0,
-        end: 5,
-      }),
-      frameRate: 15,
-      yoyo: true,
-      repeat: -1,
-    });
-
-    // setting fire animation
-    this.anims.create({
-      key: 'burn',
-      frames: this.anims.generateFrameNumbers('fire', {
-        start: 0,
-        end: 4,
-      }),
-      frameRate: 15,
-      repeat: -1,
-    });
-
-    this.scene.start('PlayGame');
+    this.background = this.add.image(config.width/2, config.height/2, 'cover');
+    new Button(this, 400, 250, 'start_button', 'PlayGame');
+    new Button(this, 400, 300, 'score_btn', 'Leaderboard');
+    
   }
 }
 

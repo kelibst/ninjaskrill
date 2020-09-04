@@ -18,7 +18,8 @@ class BootScene extends Phaser.Scene {
     const suBstyle = {
       font: 'bold 1rem Arial', fill: 'yellow', boundsAlignH: 'center', boundsAlignV: 'middle',
     };
-    this.background = this.add.image(config.width/2, config.height/2, 'cover');
+    this.add.image(config.width/2, config.height/2, 'cover');
+    
     this.title = this.add.text(config.width / 4, config.width / 4, 'NINJA SKRILL', style);
     this.title = this.add.text(config.width / 2, config.height / 2 , 'By KeliB', suBstyle);
 

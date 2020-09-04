@@ -2,7 +2,7 @@
 
 import Phaser from 'phaser';
 import config from '../config/config';
-import Button from '../config/buttons';
+
 
 import '../main.css';
 
@@ -16,9 +16,12 @@ class GameScene extends Phaser.Scene {
     this.load.image('score_btn', '../src/assets/img/buttons/score.png');
     this.load.image('menu', '../src/assets/img/buttons/exit.png');
     this.load.html('name_form', '../src/assets/name_form.html');
-
+    
     this.load.image('platform', '../src/assets/img/platform.png');
     this.load.image('background', '../src/assets/img/background2.png');
+
+    this.load.audio('background_music', ['../src/assets/audio/backaudio.mp3']);
+    this.load.audio('play_music', ['../src/assets/audio/black_sun.mp3']);
 
 
     // player is a sprite sheet made by 24x48 pixels
@@ -44,17 +47,63 @@ class GameScene extends Phaser.Scene {
       frameWidth: 512,
       frameHeight: 512,
     });
+    this.background = this.add.image(config.width/2, config.height/2, 'cover');
+    this.starting = this.add.text(300, 300, 'Loading Game...', { font: '2rem Arial', fill: 'white' });
+
+    this.musiConfig = {
+      mute: false,
+      loop: true,
+      delay: 0
+    }
+
+    
+
+    this.load.on('complete', () => {
+      this.starting.destroy();
+    });
   }
 
   create() {
-    this.starting = this.add.text(config.width / 4, config.height / 4, 'Loading Game...', { font: '4rem Arial', fill: 'yellow' });
+    this.anims.create({
+      key: 'run',
+      frames: this.anims.generateFrameNumbers('player', {
+        start: 2,
+        end: 5,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
 
+    // setting coin animation
+    this.anims.create({
+      key: 'rotate',
+      frames: this.anims.generateFrameNumbers('coin', {
+        start: 0,
+        end: 5,
+      }),
+      frameRate: 15,
+      yoyo: true,
+      repeat: -1,
+    });
 
-    setTimeout(() => {
-      this.starting.destroy();
-      new Button(this, config.width / 3, config.height / 3, 'start_button', 'PreloadGame');
-      new Button(this, config.width / 3, config.height / 3 + config.height / 10, 'score_btn', 'Leaderboard');
-    }, 3000);
+    // setting fire animation
+    this.anims.create({
+      key: 'burn',
+      frames: this.anims.generateFrameNumbers('fire', {
+        start: 0,
+        end: 4,
+      }),
+      frameRate: 15,
+      repeat: -1,
+    });
+    this.player = this.physics.add.sprite(400, 100, 'player');
+    this.player.anims.play('run');
+    setTimeout(()=>{
+      this.player.anims.stop();
+      this.scene.start('PreloadGame')
+    }, 3000)
+    const bgMusic = this.sound.add('play_music', { volume: 0.3 });
+    bgMusic.play(this.musiConfig);
   }
 }
 
