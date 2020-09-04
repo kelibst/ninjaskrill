@@ -262,7 +262,7 @@ class playGame extends Phaser.Scene {
 
         //wait for 3 s and call the end scene 
         setTimeout(()=>{
-          this.scene.start('endGame');
+          this.scene.start("PlayerInput")
         }, 1000)
       
       

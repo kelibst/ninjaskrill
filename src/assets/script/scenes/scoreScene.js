@@ -16,12 +16,14 @@ export default class LeaderboardScene extends Phaser.Scene {
     getScores().then((scores) => {
       loading.destroy();
       scores.sort((a, b) => b.score - a.score);
+      console.log(scores)
       this.add.text(100, 20, 'RANK  SCORE   NAME').setTint(0xff00ff);
-      for (let i = 0; i <= 4; i += 1) {
-        this.add.text(100, 90 * (i + 1), 'arcade', ` ${i + 1}     ${scores[i].score}   ${scores[i].user}`).setTint(0xff0000);
+      const consLen = scores.length < 6 ? scores.length : 6;
+      for (let i = 0; i <= consLen; i += 1) {
+        this.add.text(100, 90 * (i + 1),  `Ninja ${i + 1}     ${scores[i].score}   ${scores[i].user}`).setTint(0xff00ff);
       }
-    }).catch(() => {
-      this.add.text(100, 100, 'There was an error while loading the server');
+    }).catch((err) => {
+      this.add.text(100, 100, `Error: ${err}`);
     });
   }
 }

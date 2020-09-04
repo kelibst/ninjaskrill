@@ -9,13 +9,14 @@ export default class PlayerInputScene extends Phaser.Scene {
 
   create() {
     const latestUser = setUserName().getUserData();
-    if (latestUser.length) {
+    if (latestUser) {
       const inputUsername = latestUser.name;
       if (inputUsername !== '') {
         const loading = this.add.text(350, 250, 'Loading...', { color: 'white', fontFamily: 'Arial', fontSize: '24px ' });
-        putScore(inputUsername, localStorage.getItem('score')).then(() => {
+        putScore(inputUsername, latestUser.score[latestUser.score.length -1]).then((data) => {
+          console.log(data)
           loading.destroy();
-          this.scene.start('Title');
+          this.scene.start('endGame');
         }).catch((err) => {
           this.add.text(350, 250, `Sorry Unable to set user ${err}`);
         });
