@@ -13,7 +13,7 @@ export default class PlayerInputScene extends Phaser.Scene {
       const inputUsername = latestUser.name;
       if (inputUsername !== '') {
         const loading = this.add.text(350, 250, 'Loading...', { color: 'white', fontFamily: 'Arial', fontSize: '24px ' });
-        putScore(inputUsername, latestUser.score[latestUser.score.length - 1]).then((data) => {
+        putScore(inputUsername, latestUser.score[latestUser.score.length - 1]).then(() => {
           loading.destroy();
           this.scene.start('endGame');
         }).catch((err) => {

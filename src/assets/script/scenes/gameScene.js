@@ -15,12 +15,12 @@ class GameScene extends Phaser.Scene {
     this.load.image('start_button', '../src/assets/img/buttons/start.png');
     this.load.image('score_btn', '../src/assets/img/buttons/score.png');
     this.load.image('menu', '../src/assets/img/buttons/exit.png');
-    this.load.html('name_form', '../src/assets/name_form.html');
+    this.load.image('how_to', '../src/assets/img/buttons/how_to.png');
+    this.load.image('credit', '../src/assets/img/buttons/credit.png');
     
     this.load.image('platform', '../src/assets/img/platform.png');
     this.load.image('background', '../src/assets/img/background2.png');
 
-    this.load.audio('background_music', ['../src/assets/audio/backaudio.mp3']);
     this.load.audio('play_music', ['../src/assets/audio/black_sun.mp3']);
 
 
@@ -102,7 +102,7 @@ class GameScene extends Phaser.Scene {
       this.player.anims.stop();
       this.scene.start('PreloadGame')
     }, 3000)
-    const bgMusic = this.sound.add('play_music', { volume: 0.3 });
+    const bgMusic = this.sound.add('play_music', { volume: 0.2 });
     bgMusic.play(this.musiConfig);
   }
 }
