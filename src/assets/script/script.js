@@ -37,6 +37,8 @@ const setUserName = () => ({
           nameset.classList.add('d-none');
           person = this.User(res);
           this.updateData(person);
+        } else {
+          this.getUserData();
         }
       });
     } else {
