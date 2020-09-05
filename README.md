@@ -1,4 +1,4 @@
-[![hire-badge](https://img.shields.io/badge/Consult%20/%20Hire%20Murilo-Click%20to%20Contact-brightgreen)](mailto:kbooster17@gmail.com) [![Twitter Follow](https://twitter.com/keli_booster)](https://twitter.com/keli_booster)
+
 
 # ninjaskrill
 
@@ -23,14 +23,22 @@ What the project contains:
 - Deployed the app to Netlify;
 - Translated business requirements into software solutions;
 - Multitasked and effectively manage time and prioritization;
-- Used strong English verbal communication;
 - Used strong English written communication;
 - Communicated information effectively to technical people.
 
+Game Design Documentation I made on day 2: [GDD](src/assets/gdd.md)
+
+
 # How to play
 
-- Bein a ninja is often a lot of hard work, but not this time. 
-- In this game you simply have to keep clicking on your screen and avoid danger
+- Being a ninja is often a lot of hard work, but not this time. 
+- In this game you simply have to keep clicking on your screen and avoid danger.
+- Click or tap the screen to jump. You can jump twice, you are a Ninja. Ninja's can do that.
+- Try to become a `Black Ninja` by beating the Highest score.
+- The game has:
+    - A score button to display a list of High scores and their users.
+    - A credit button to list credits.
+    - A How to button to guide users on how to play the game.
 
 ## Built with
 
@@ -47,8 +55,9 @@ What the project contains:
 - Clone the repository on your local machine;
 - Cd into the folder;
 - Run `npm install`
-- Run `npm run build`;
-- Open your browser and type `http://127.0.0.1:5500/dist/index.html#`;
+- Run `npm run serve`;
+- If you are using vs code install live serve extension.
+- Visit `/dist` folder and right click on index.html and open with live server
 - To run tests, type `npm run test`.
 
 

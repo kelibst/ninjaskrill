@@ -10,8 +10,14 @@ describe('Should have a factory for setting users', () => {
     expect(user.name).toBe('Keli');
   });
 
+  test('Should have a score array to store\' s scores.', () => {
+    const user = setUserName().User('Keli');
+
+    expect(typeof user.score).toBe('object');
+  });
+
   test('user object should have score property ', () => {
     const user = setUserName().User('Keli');
-    expect(user.score).toBe(0);
+    expect(user.score).toEqual([]);
   });
 });

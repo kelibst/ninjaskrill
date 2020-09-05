@@ -1,3 +1,4 @@
+var path = require('path');
 const Htmlwebpackplugin = require('html-webpack-plugin');
 const Minicss = require('mini-css-extract-plugin');
 
@@ -50,4 +51,9 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
   ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000
+  }
 };
