@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable  import/no-cycle */
 
 import BootScene from '../scenes/bootScene';
 import GameScene from '../scenes/gameScene';
@@ -14,15 +14,15 @@ const config = {
   width: 800,
   height: 600,
   backgroundColor: 0x0c88c7,
-  scene: [BootScene, 
-          GameScene, 
-          preloadGame, 
-          playGame, 
-          scoreScene, 
-          endingScene, 
-          PlayerInputScene,
-          giveCredit,
-          howToScene],
+  scene: [BootScene,
+    GameScene,
+    preloadGame,
+    playGame,
+    scoreScene,
+    endingScene,
+    PlayerInputScene,
+    giveCredit,
+    howToScene],
   physics: {
     default: 'arcade',
   },

@@ -1,4 +1,4 @@
-
+/* eslint-disable import/no-cycle */
 import Phaser from 'phaser';
 import config from '../config/config';
 import gameOptions from '../config/options';
@@ -127,7 +127,7 @@ class playGame extends Phaser.Scene {
     }, null, this);
 
     // setting collisions between the player and the fire group
-    this.physics.add.overlap(this.player, this.fireGroup, (player, fire) => {
+    this.physics.add.overlap(this.player, this.fireGroup, () => {
       this.dying = true;
       this.player.anims.stop();
       this.player.setFrame(2);
@@ -169,7 +169,7 @@ class playGame extends Phaser.Scene {
 
   // the core of the script: platform are added from the pool or created on the fly
   addPlatform(platformWidth, posX, posY) {
-    this.addedPlatforms++;
+    this.addedPlatforms += 1;
     let platform;
     if (this.platformPool.getLength()) {
       platform = this.platformPool.getFirst();
@@ -178,14 +178,16 @@ class playGame extends Phaser.Scene {
       platform.active = true;
       platform.visible = true;
       this.platformPool.remove(platform);
-      const newRatio = platformWidth / platform.displayWidth;
       platform.displayWidth = platformWidth;
       platform.tileScaleX = 1 / platform.scaleX;
     } else {
       platform = this.add.tileSprite(posX, posY, platformWidth, 32, 'platform');
       this.physics.add.existing(platform);
       platform.body.setImmovable(true);
-      platform.body.setVelocityX(Phaser.Math.Between(gameOptions.platformSpeedRange[0], gameOptions.platformSpeedRange[1]) * -1);
+      platform.body.setVelocityX(Phaser.Math.Between(
+        gameOptions.platformSpeedRange[0],
+        gameOptions.platformSpeedRange[1],
+      ) * -1);
       platform.setDepth(2);
       this.platformGroup.add(platform);
     }
@@ -236,15 +238,16 @@ class playGame extends Phaser.Scene {
     }
   }
 
-  // the player jumps when on the ground, or once in the air as long as there are jumps left and the first jump was on the ground
+  // the player jumps when on the ground, or once in the air
   // and obviously if the player is not dying
   jump() {
-    if ((!this.dying) && (this.player.body.touching.down || (this.playerJumps > 0 && this.playerJumps < gameOptions.jumps))) {
+    const Dn = this.player.body.touching.down;
+    if ((!this.dying) && (Dn || (this.playerJumps > 0 && this.playerJumps < gameOptions.jumps))) {
       if (this.player.body.touching.down) {
         this.playerJumps = 0;
       }
       this.player.setVelocityY(gameOptions.jumpForce * -1);
-      this.playerJumps++;
+      this.playerJumps += 1;
 
       // stops animation
       this.player.anims.stop();

@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable no-new */
 
 import Phaser from 'phaser';
 import { getScores } from '../config/leaderboard';
@@ -19,7 +19,7 @@ export default class LeaderboardScene extends Phaser.Scene {
       this.add.text(100, 20, 'RANK  SCORE   NAME').setTint(0xff00ff);
       const consLen = scores.length < 6 ? scores.length : 6;
       for (let i = 0; i <= consLen; i += 1) {
-        this.add.text(100, 90 * (i + 1),  `Ninja ${i + 1}     ${scores[i].score}   ${scores[i].user}`).setTint(0xff00ff);
+        this.add.text(100, 90 * (i + 1), `Ninja ${i + 1}     ${scores[i].score}   ${scores[i].user}`).setTint(0xff00ff);
       }
     }).catch((err) => {
       this.add.text(100, 100, `Error: ${err}`);
