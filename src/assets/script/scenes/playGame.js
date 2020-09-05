@@ -1,10 +1,8 @@
-/* eslint-disable */
 
 import Phaser from 'phaser';
 import config from '../config/config';
 import gameOptions from '../config/options';
-import setUserData from '../script'
-import preloadGame from './preloadGame';
+import setUserData from '../script';
 
 // playGame scene
 class playGame extends Phaser.Scene {
@@ -19,7 +17,7 @@ class playGame extends Phaser.Scene {
     this.scoreBoard = this.add.text(30, 20, `Score: ${this.score}`, { font: '30px Monospace', fill: 'yellow' });
 
     this.scoreBoard.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
-    
+
 
     // group with all active mountains.
     this.mountainGroup = this.add.group();
@@ -89,7 +87,9 @@ class playGame extends Phaser.Scene {
     this.playerJumps = 0;
 
     // adding a platform to the game, the arguments are platform width, x position and y position
-    this.addPlatform(config.width, config.width / 2, config.height * gameOptions.platformVerticalLimit[1]);
+    this.addPlatform(config.width,
+      config.width / 2,
+      config.height * gameOptions.platformVerticalLimit[1]);
 
     // adding the player;
     this.player = this.physics.add.sprite(gameOptions.playerStartPosition, config.height * 0.7, 'player');
@@ -100,7 +100,7 @@ class playGame extends Phaser.Scene {
     this.dying = false;
 
     // setting collisions between the player and the platform group
-    this.platformCollider = this.physics.add.collider(this.player, this.platformGroup, function () {
+    this.platformCollider = this.physics.add.collider(this.player, this.platformGroup, () => {
       // play "run" animation if the player is on a platform
       if (!this.player.anims.isPlaying) {
         this.player.anims.play('run');
@@ -109,7 +109,7 @@ class playGame extends Phaser.Scene {
 
     // setting collisions between the player and the coin group
 
-    this.physics.add.overlap(this.player, this.coinGroup, function (player, coin) {
+    this.physics.add.overlap(this.player, this.coinGroup, (player, coin) => {
       this.score += 1;
       this.scoreBoard.setText(`Score: ${this.score}`);
       this.tweens.add({
@@ -127,7 +127,7 @@ class playGame extends Phaser.Scene {
     }, null, this);
 
     // setting collisions between the player and the fire group
-    this.physics.add.overlap(this.player, this.fireGroup, function (player, fire) {
+    this.physics.add.overlap(this.player, this.fireGroup, (player, fire) => {
       this.dying = true;
       this.player.anims.stop();
       this.player.setFrame(2);
@@ -143,11 +143,11 @@ class playGame extends Phaser.Scene {
   addMountains() {
     const rightmostMountain = this.getRightmostMountain();
     if (rightmostMountain < config.width * 2) {
-      //change to tree
+      // change to tree
       const mountain = this.physics.add.sprite(rightmostMountain + Phaser.Math.Between(50, 200), 600, 'mountain');
       mountain.setOrigin(0.5, 1);
-      mountain.setScale(0.5)
-      
+      mountain.setScale(0.5);
+
       mountain.body.setVelocityX(gameOptions.mountainSpeed * -1);
       this.mountainGroup.add(mountain);
       if (Phaser.Math.Between(0, 1)) {
@@ -254,22 +254,19 @@ class playGame extends Phaser.Scene {
   update() {
     // game over
     if (this.player.y > config.height) {
-     this.scene.pause("PlayGame")
-      
-     //get the current user
-      let curUser = setUserData().getUserData(); 
-      
-      //add the score to the score array
-        curUser.score.push(this.score)
-        setUserData().updateData(curUser);
+      this.scene.pause('PlayGame');
 
-        //wait for 3 s and call the end scene 
-        setTimeout(()=>{
-          this.scene.start("PlayerInput")
-        }, 1000)
-      
-      
-      
+      // get the current user
+      const curUser = setUserData().getUserData();
+
+      // add the score to the score array
+      curUser.score.push(this.score);
+      setUserData().updateData(curUser);
+
+      // wait for 3 s and call the end scene
+      setTimeout(() => {
+        this.scene.start('PlayerInput');
+      }, 1000);
     }
 
     this.player.x = gameOptions.playerStartPosition;
@@ -278,7 +275,7 @@ class playGame extends Phaser.Scene {
     // recycling platforms
     let minDistance = config.width;
     let rightmostPlatformHeight = 0;
-    this.platformGroup.getChildren().forEach(function (platform) {
+    this.platformGroup.getChildren().forEach((platform) => {
       const platformDistance = config.width - platform.x - platform.displayWidth / 2;
       if (platformDistance < minDistance) {
         minDistance = platformDistance;
@@ -291,7 +288,7 @@ class playGame extends Phaser.Scene {
     }, this);
 
     // recycling coins
-    this.coinGroup.getChildren().forEach(function (coin) {
+    this.coinGroup.getChildren().forEach((coin) => {
       if (coin.x < -coin.displayWidth / 2) {
         this.coinGroup.killAndHide(coin);
         this.coinGroup.remove(coin);
@@ -299,7 +296,7 @@ class playGame extends Phaser.Scene {
     }, this);
 
     // recycling fire
-    this.fireGroup.getChildren().forEach(function (fire) {
+    this.fireGroup.getChildren().forEach((fire) => {
       if (fire.x < -fire.displayWidth / 2) {
         this.fireGroup.killAndHide(fire);
         this.fireGroup.remove(fire);
@@ -307,13 +304,13 @@ class playGame extends Phaser.Scene {
     }, this);
 
     // recycling mountains
-    this.mountainGroup.getChildren().forEach(function (mountain) {
+    this.mountainGroup.getChildren().forEach((mountain) => {
       if (mountain.x < -mountain.displayWidth) {
         const rightmostMountain = this.getRightmostMountain();
         mountain.x = rightmostMountain + Phaser.Math.Between(50, 200);
         mountain.y = 600;
         mountain.setFrame(Phaser.Math.Between(0, 1));
-        mountain.setScale(0.5)
+        mountain.setScale(0.5);
         if (Phaser.Math.Between(0, 1)) {
           mountain.setDepth(1);
         }
@@ -322,12 +319,18 @@ class playGame extends Phaser.Scene {
 
     // adding new platforms
     if (minDistance > this.nextPlatformDistance) {
-      const nextPlatformWidth = Phaser.Math.Between(gameOptions.platformSizeRange[0], gameOptions.platformSizeRange[1]);
-      const platformRandomHeight = gameOptions.platformHeighScale * Phaser.Math.Between(gameOptions.platformHeightRange[0], gameOptions.platformHeightRange[1]);
+      const nextPlatformWidth = Phaser.Math.Between(gameOptions.platformSizeRange[0],
+        gameOptions.platformSizeRange[1]);
+      const platformRandomHeight = gameOptions.platformHeighScale * Phaser.Math.Between(
+        gameOptions.platformHeightRange[0],
+        gameOptions.platformHeightRange[1],
+      );
       const nextPlatformGap = rightmostPlatformHeight + platformRandomHeight;
       const minPlatformHeight = config.height * gameOptions.platformVerticalLimit[0];
       const maxPlatformHeight = config.height * gameOptions.platformVerticalLimit[1];
-      const nextPlatformHeight = Phaser.Math.Clamp(nextPlatformGap, minPlatformHeight, maxPlatformHeight);
+      const nextPlatformHeight = Phaser.Math.Clamp(nextPlatformGap,
+        minPlatformHeight,
+        maxPlatformHeight);
       this.addPlatform(nextPlatformWidth, config.width + nextPlatformWidth / 2, nextPlatformHeight);
     }
   }

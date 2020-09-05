@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable import/no-cycle */
 
 import Phaser from 'phaser';
 import config from '../config/config';
@@ -17,7 +17,7 @@ class GameScene extends Phaser.Scene {
     this.load.image('menu', '../src/assets/img/buttons/exit.png');
     this.load.image('how_to', '../src/assets/img/buttons/how_to.png');
     this.load.image('credit', '../src/assets/img/buttons/credit.png');
-    
+
     this.load.image('platform', '../src/assets/img/platform.png');
     this.load.image('background', '../src/assets/img/background2.png');
 
@@ -47,16 +47,15 @@ class GameScene extends Phaser.Scene {
       frameWidth: 512,
       frameHeight: 512,
     });
-    this.background = this.add.image(config.width/2, config.height/2, 'cover');
+    this.background = this.add.image(config.width / 2, config.height / 2, 'cover');
     this.starting = this.add.text(300, 300, 'Loading Game...', { font: '2rem Arial', fill: 'white' });
 
     this.musiConfig = {
       mute: false,
       loop: true,
-      delay: 0
-    }
+      delay: 0,
+    };
 
-    
 
     this.load.on('complete', () => {
       this.starting.destroy();
@@ -98,10 +97,10 @@ class GameScene extends Phaser.Scene {
     });
     this.player = this.physics.add.sprite(400, 100, 'player');
     this.player.anims.play('run');
-    setTimeout(()=>{
+    setTimeout(() => {
       this.player.anims.stop();
-      this.scene.start('PreloadGame')
-    }, 3000)
+      this.scene.start('PreloadGame');
+    }, 3000);
     const bgMusic = this.sound.add('play_music', { volume: 0.2 });
     bgMusic.play(this.musiConfig);
   }
