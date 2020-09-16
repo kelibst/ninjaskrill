@@ -7,7 +7,7 @@
 
 What the project contains:
 
-- Used Javascript and Phaser 3 to implement a Shooter Game;
+- Used Javascript and Phaser 3 to implement an Endless Runner Game;
 - Used the following packages apart from the standard ones:
   - phaser
   - webpack
